@@ -1,0 +1,74 @@
+.header-text {
+    color: darkred;
+    font-family: "cursive";
+    font-size: 20px;
+    text-align: center;
+}
+.header-text::before {
+    content: "★";
+    margin-right: 10px;
+}
+.container {
+    display: flex;
+    margin-top: 10px;
+}
+
+.container > div {
+    border: 2px solid darkred;
+}
+
+.column {
+    flex: 1;
+    height: 300px;
+}
+
+.column-left {
+    background: aqua;
+}
+
+.column-right {
+    background: aquamarine;
+}
+
+.form-el {
+    margin: 5px 0 7px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Убираем двойные границы */
+    font-family: Arial, sans-serif;
+    margin: 20px 0;
+}
+
+/* Стили для заголовков таблицы */
+thead {
+    background-color: #4CAF50; /* Зелёный цвет фона */
+    color: white; /* Белый текст */
+}
+
+thead th {
+    padding: 10px 15px; /* Отступы в заголовках */
+}
+
+/* Стили для ячеек таблицы */
+td, th {
+    border: 1px solid #dddddd; /* Светло-серая рамка */
+    text-align: left; /* Выравнивание текста по левому краю */
+    padding: 8px; /* Отступы в ячейках */
+}
+
+/* Стиль для строк при наведении курсора */
+tr:hover {
+    background-color: #f5f5f5; /* Светло-серый фон */
+}
+
+/* Чередующиеся цвета строк */
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Ещё более светло-серый фон */
+}
+
+.draw {
+    display: block;
+    margin: auto;
+}
