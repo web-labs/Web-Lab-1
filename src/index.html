@@ -7,51 +7,58 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
-<div class="header-text">
+<div class="header-container header-text">
     Наземцев Сергей Дмитриевич P3111 3111008
 </div>
 
 <canvas id="canvas" class="draw">Unsupported</canvas>
 
-<div class="container">
-    <div class="column column-left">
-        <p>X (X &isin; [-5; 5]) = </p>
-        <p>Y = <span id="output">-5</span></p>
-        <p>R (R &isin; [2; 5]) = </p>
-    </div>
+<div class="form-container">
+    <form id="myForm">
+        <div class="form-group">
+            <label for="xValue">Coordinate X (X &isin; [-5; 5])</label>
+            <input type="text" name="xValue" id="xValue" class="form-el"><br>
+        </div>
 
-    <form class="column column-right" id="myForm">
-        <input type="text" name="xValue" id="xValue" class="form-el"><br>
-        <select id="ySelector" name='yValue' class="form-el" onchange="getY()">
-            <option value="-5">-5</option>
-            <option value="-4">-4</option>
-            <option value="-3">-3</option>
-            <option value="-2">-2</option>
-            <option value="-1">-1</option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-        </select><br>
-        <input type="text" name="rValue" class="form-el" id="rValue"><br>
-        <input type="submit" value="Send" class="btn btn-success"><br>
+        <div class="form-group">
+            <label for="ySelector">Coordinate Y</label>
+            <select id="ySelector" name='yValue' class="form-el" onchange="getY()">
+                <option value="-5">-5</option>
+                <option value="-4">-4</option>
+                <option value="-3">-3</option>
+                <option value="-2">-2</option>
+                <option value="-1">-1</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select><br>
+        </div>
+
+        <div class="form-group">
+            <label for="rValue">Range R (R &isin; [2; 5])</label>
+            <input type="text" name="rValue" class="form-el" id="rValue"><br>
+        </div>
+
+        <input type="submit" value="Send" class="submit-btn"><br>
 
     </form>
 
 </div>
 
+<div class="table-container">
+    <table id="resultsTable">
+        <tr>
+            <th>X</th>
+            <th>Y</th>
+            <th>R</th>
+            <th>Result</th>
+            <th>Current time</th>
+            <th>Execution time</th>
+        </tr>
+    </table>
 
-
-<table id="resultsTable">
-    <tr>
-        <th>X</th>
-        <th>Y</th>
-        <th>R</th>
-        <th>Result</th>
-        <th>Current time</th>
-        <th>Execution time</th>
-    </tr>
-</table>
+</div>
 
 </body>
 </html>
@@ -81,6 +88,9 @@
 
         if (validate(xVal, rVal)){
             drawCoordsPlane(rVal);
+            if (xVal > rVal || yVal > rVal){
+                alert('Unable to draw a point, length of the axes exceeded')
+            }
             const canvasCoords = toCanvasCoords(xVal, yVal, rVal, 350);
             drawPoint(canvasCoords.x, canvasCoords.y);
             fetch('count_values.php', {
@@ -106,12 +116,24 @@
     function addToTable(input1, input2, input3, result, curr_time, exec_time) {
         const table = document.getElementById('resultsTable');
         const row = table.insertRow();
-        row.insertCell().textContent = input1;
-        row.insertCell().textContent = input2;
-        row.insertCell().textContent = input3;
-        row.insertCell().textContent = result;
-        row.insertCell().textContent = curr_time;
-        row.insertCell().textContent = exec_time;
+        const cell1 = row.insertCell()
+        cell1.textContent = input1;
+        cell1.className = 'new-cell';
+        const cell2 = row.insertCell();
+        cell2.textContent = input2;
+        cell2.className = 'new-cell';
+        const cell3 = row.insertCell()
+        cell3.textContent = input3;
+        cell3.className = 'new-cell';
+        const cell4 = row.insertCell()
+        cell4.textContent = result;
+        cell4.className = 'new-cell';
+        const cell5 = row.insertCell()
+        cell5.textContent = curr_time;
+        cell5.className = 'new-cell';
+        const cell6 = row.insertCell()
+        cell6.textContent = exec_time;
+        cell6.className = 'new-cell';
     }
 
     function saveToLocalStorage(x, y, r, result, curr_time, exec_time){

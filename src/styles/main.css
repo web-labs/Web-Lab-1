@@ -1,59 +1,136 @@
-.header-text {
-    color: darkred;
-    font-family: "cursive";
-    font-size: 20px;
-    text-align: center;
-}
-.header-text::before {
-    content: "★";
-    margin-right: 10px;
-}
-.container {
+.header-container {
     display: flex;
-    margin-top: 10px;
+    align-content: center;
 }
 
-.container > div {
-    border: 2px solid darkred;
+.header-text {
+    font-family: cursive;
+    font-size: 20px;
+    text-align: right;
+    margin: 20px auto 30px;
+    text-decoration: none;
+    color: black;
+    width: fit-content;
+    padding: 10px;
+    border: 2px solid lightgray;
+    border-radius: 20px;
+
+    transition: .3s;
+    background: linear-gradient(to right, darkgreen, #00FF5B, lawngreen);
+    background-size: 0 3px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+
+}
+.header-text:hover{
+    background-size: 100% 3px;
 }
 
-.column {
-    flex: 1;
-    height: 300px;
+
+.form-container {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.column-left {
-    background: aqua;
+.form-group {
+    margin-bottom: 15px;
 }
 
-.column-right {
-    background: aquamarine;
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
 }
 
-.form-el {
-    margin: 5px 0 7px 0;
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+input:focus {
+    border-color: #4CAF50;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 3px #4CAF50;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+select:focus {
+    border-color: #4CAF50;
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
+
+.table-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse; /* Убираем двойные границы */
+    width: 85%;
+    border-collapse: collapse;
     font-family: Arial, sans-serif;
-    margin: 20px 0;
+    margin: 20px 0 100px;
+    align-self: center;
 }
 
-/* Стили для заголовков таблицы */
-thead {
+.new-cell{
+    text-align: left;
+    border-left: 2px solid #ddd;
+    border-right: 2px solid #ddd;
+    font-size: 14px;
+}
+
+table th {
+    padding: 10px 15px; /* Отступы в заголовках */
     background-color: #4CAF50; /* Зелёный цвет фона */
     color: white; /* Белый текст */
 }
 
-thead th {
-    padding: 10px 15px; /* Отступы в заголовках */
+
+table tr th:first-child {
+    border-radius: 20px 0 0 0;
+}
+
+table tr th:last-child {
+    border-radius: 0 20px 0 0;
+}
+
+table tr th:not(:first-child):not(:last-child) {
+    border-left: 2px solid #ddd;
+    border-right: 2px solid #ddd;
 }
 
 /* Стили для ячеек таблицы */
 td, th {
-    border: 1px solid #dddddd; /* Светло-серая рамка */
     text-align: left; /* Выравнивание текста по левому краю */
     padding: 8px; /* Отступы в ячейках */
 }
