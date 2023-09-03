@@ -12,7 +12,7 @@ function addToTable(input1, input2, input3, result, curr_time, exec_time) {
     cell3.className = 'new-cell';
     const cell4 = row.insertCell();
     cell4.textContent = result;
-    cell4.className = 'new-cell';
+    cell4.className = 'result-cell';
     const cell5 = row.insertCell();
     cell5.textContent = curr_time;
     cell5.className = 'new-cell';

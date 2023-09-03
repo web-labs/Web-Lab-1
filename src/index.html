@@ -73,18 +73,19 @@
 
 
         .submit-btn {
-            display: block;
-            width: 200%;
             padding: 12px;
-            align-items: center;
             background-color: #4CAF50;
             color: white;
             border: none;
             border-radius: 4px;
             font-size: 18px;
             cursor: pointer;
-            margin-left: 70%;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            margin-left: 60%;
         }
+
 
         .submit-btn:hover {
             background-color: #45a049;
@@ -99,11 +100,17 @@
 
         }
 
-        .new-cell{
+        .new-cell, .result-cell{
             text-align: left;
             border-left: 2px solid #ddd;
             border-right: 2px solid #ddd;
             font-size: 14px;
+        }
+
+        .result-cell {
+            font-weight: bold;
+            color: red;
+            font-size: 17px;
         }
 
         #resultsTable th {
@@ -190,7 +197,7 @@
 
         <tr>
             <td>
-                <fieldset style="width: 220%">
+                <fieldset style="width: 220%; max-width: 200px">
                     <legend>Range R</legend>
 
                     <input type="checkbox" id="rValue1" name="rValue" value="1">
