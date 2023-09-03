@@ -49,35 +49,31 @@ function drawCoordsPlane(r){
     const halfWidth = canvas.width / 2;
     const halfHeight = canvas.height / 2;
     const quarterWidth = canvas.width / 4;
+    const quarterHeight = canvas.height / 4;
     const arrowSize = 10;
 
+    //1st quarter - square
+    ctx.fillStyle = '#4169E1';
+    ctx.fillRect(halfWidth, 0, halfWidth, halfHeight);
 
-
-
-    // 1я четверть: прямоугольный треугольник
+    //3rd quarter - triangle
     ctx.beginPath();
-    ctx.moveTo(halfWidth, 0);
-    ctx.lineTo(halfWidth + quarterWidth, halfHeight);
+    ctx.moveTo(0, halfHeight);
+    ctx.lineTo(halfWidth, halfHeight + quarterHeight);
     ctx.lineTo(halfWidth, halfHeight);
     ctx.closePath();
-
-    ctx.fillStyle = '#4169E1';
     ctx.fill();
 
-
-
-    // 3я четверть: сектор круга
+    //4th quarter - 1/4 circle
     ctx.beginPath();
-    ctx.moveTo(halfWidth, halfHeight);
-
-    ctx.arc(halfWidth, halfHeight, quarterWidth, 0.5 * Math.PI, 1 * Math.PI);
+    //ctx.moveTo(halfWidth, halfHeight);
+    ctx.arc(halfWidth, halfHeight, halfWidth, 0, 0.5*Math.PI);
     ctx.lineTo(halfWidth, halfHeight);
     ctx.fill();
 
-    // 4я четверть: прямоугольник
-    ctx.fillRect(halfWidth, halfHeight, quarterWidth, halfHeight);
 
-    //Draw all stuff
+
+    //Draw axes, points and labels
     ctx.beginPath();
     putDots(ctx);
     ctx.font = "15px Arial";

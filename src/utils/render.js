@@ -1,26 +1,25 @@
+import Validator from "./Validator.js";
+
 const mainForm = document.querySelector('#myForm');
     mainForm.addEventListener('submit', function (e){
         e.preventDefault();
         const xVal = parseFloat(document.querySelector('#xValue').value);
-        const rVal = parseFloat(document.querySelector('#rValue').value);
+        const yVal = parseFloat(document.querySelector('#yValue').value);
 
-        const selector = document.querySelector('#ySelector');
-        const yVal = parseFloat(selector.options[selector.selectedIndex].value);
+        const checkboxes = document.querySelectorAll("input[name='rValue']:checked");
+        const rVal = Array.from(checkboxes).map(checkbox => checkbox.value);
 
-        if (validate(xVal, rVal)){
+        const validator = new Validator();
+        validator.validate(xVal, yVal, rVal);
+        if (validator.getResponseCode() === 1){
             drawCoordsPlane(rVal);
             if (xVal > rVal || yVal > rVal || xVal < -rVal || yVal < -rVal){
                 alert('Unable to draw a point, length of the axes exceeded')
             }
             const canvasCoords = toCanvasCoords(xVal, yVal, rVal, 350);
             drawPoint(canvasCoords.x, canvasCoords.y);
-            fetch('count_values.php', {
-                method: 'POST',
-                body: new URLSearchParams({
-                    xVal: xVal,
-                    yVal: yVal,
-                    rVal: rVal
-                })
+            fetch(`count_values.php?xVal=${xVal}&yVal=${yVal}&rVal=${rVal}`, {
+                method: 'GET',
             })
                 .then(response => response.text())
                 .then(result => {
@@ -29,7 +28,7 @@ const mainForm = document.querySelector('#myForm');
                     saveToLocalStorage(xVal, yVal, rVal, responseData.result, responseData.curr_time, responseData.exec_time);
                 });
         } else {
-            alert("Error in inputted data, try again")
+            alert(validator.getMessage());
         }
 
     });
