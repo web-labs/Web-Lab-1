@@ -88,9 +88,8 @@
             transform: translateX(25px);
         }
 
-        .head-table {
-            width: 100%;
-        }
+
+
 
         .header-text {
             text-align: center;
@@ -121,7 +120,6 @@
             background-color: var(--form-bg-color);
             border-radius: 8px;
             box-shadow: 0 2px 5px var(--shadow-color);
-            align-items: center;
         }
 
 
@@ -179,7 +177,7 @@
             width: 85%;
             border-collapse: collapse;
             font-family: Arial, sans-serif;
-            margin: 3% auto;
+            margin: 3% auto auto 15%;
 
         }
 
@@ -244,17 +242,19 @@
             display: block;
             margin: 2% auto;
         }
+
     </style>
 </head>
 <body>
 
 <table class="main-table">
 
-    <thead class="head-table">
+    <thead>
     <tr>
         <th class="header-text">
             Nazemtsev Sergei Dmitryevitch P3211 2116
         </th>
+
 
         <td style="max-width: 100px">
             <img src="assets/free-icon-sun-1857296.png" style="width: 35px; height: 35px">
@@ -268,7 +268,7 @@
     </thead>
     <tbody>
     <tr>
-        <td>
+        <td class="canvas-row">
             <canvas id="canvas" class="draw">Unsupported</canvas>
         </td>
     </tr>
@@ -335,7 +335,7 @@
     </tr>
     <tr>
         <td>
-            <table id="resultsTable">
+            <table id="resultsTable" >
                 <tr>
                     <th>X</th>
                     <th>Y</th>
