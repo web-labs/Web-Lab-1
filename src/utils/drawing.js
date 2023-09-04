@@ -11,7 +11,7 @@ function drawPoint(xVal, yVal){
 }
 
 function putDots(ctx){
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--axes-color').trim();
     const radius = 4;
     ctx.beginPath();
     ctx.arc(262.5, 175, radius, 0, Math.PI * 2);
@@ -96,6 +96,9 @@ function drawCoordsPlane(r){
     ctx.moveTo(halfWidth, 0);
     ctx.lineTo(halfWidth, canvas.height);
 
+    ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--axes-color').trim();
+    ctx.stroke();
+
     // Стрелочки для осей
     ctx.moveTo(canvas.width - arrowSize, halfHeight - arrowSize);
     ctx.lineTo(canvas.width, halfHeight);
@@ -104,7 +107,8 @@ function drawCoordsPlane(r){
     ctx.moveTo(halfWidth - arrowSize, arrowSize);
     ctx.lineTo(halfWidth, 0);
     ctx.lineTo(halfWidth + arrowSize, arrowSize);
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--axes-color').trim();
+
     ctx.fillText(String(r/2), 185, 87.5);
     ctx.stroke();
 }

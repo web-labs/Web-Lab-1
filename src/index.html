@@ -4,16 +4,99 @@
     <meta charset="UTF-8">
     <title>Web Lab1</title>
     <style>
+
+        :root{
+            --main-text-color: black;
+            --bg-color: white;
+            --hover-color: #f5f5f5;
+            --axes-color: black;
+            --form-text-color: black;
+            --form-bg-color: white;
+            --unusual-table-row-color: #f2f2f2;
+            --shadow-color: lightgray;
+            --input-color: white;
+            --input-text-color: black;
+            --header-text: darkgreen;
+        }
+
+        [data-theme="dark"] {
+            --main-text-color: white;
+            --bg-color: #181a1b;
+            --hover-color: #282828;
+            --axes-color: white;
+            --form-text-color: white;
+            --form-bg-color: black;
+            --unusual-table-row-color: #343E40;
+            --shadow-color: white;
+            --input-color: #181a1b;
+            --input-text-color: white;
+            --header-text: white;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--main-text-color);
+        }
+
+        .main-table{
+            border-collapse: collapse;
+            width: 100%;
+
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 35px;
+        }
+
+        .switch input {
+            display: none;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 20px;
+
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 25px;
+            width: 25px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50px;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(25px);
+        }
+
         .head-table {
             width: 100%;
-            margin-bottom: 3%;
         }
 
         .header-text {
             text-align: center;
-            width: 50%;
+            width: 60%;
             font-size: 20px;
-            color: darkgreen;
+            color: var(--header-text);
             font-family: cursive;
             border: 3px solid lightgreen;
             border-radius: 20px;
@@ -23,44 +106,45 @@
         }
 
 
-        .form-container > tr:hover td {
-            background-color: #f2f2f2;
-        }
 
         .header-text:hover {
-            background: #f5f5f5;
+            background: var(--hover-color);
         }
 
 
         .form-container {
             max-width: 400px;
-            margin: 30px auto;
-            padding: 20px;
+            margin: auto;
+            padding: 2%;
             font-family: cursive;
             font-size: 15px;
-            background-color: #fff;
+            background-color: var(--form-bg-color);
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px var(--shadow-color);
+            align-items: center;
         }
 
 
 
         .form-container tr {
-            display: block;
+            display: flex;
             margin-bottom: 5%;
-            margin-right: 3%;
+            margin-right: 2%;
             font-weight: bold;
         }
 
         .form-container tr > td > fieldset > input[type="checkbox"]:checked + label{
-            color: lightcoral;
+            color: 	#32CD32;
         }
 
 
         .coords-input {
-            width: 100%;
-            padding: 10px;
+            width: 95%;
+            margin: auto;
+            padding: 3%;
             font-size: 16px;
+            color: var(--input-text-color);
+            background-color: var(--input-color);
             border: 1px solid #ccc;
             border-radius: 4px;
             box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -73,7 +157,6 @@
 
 
         .submit-btn {
-            padding: 12px;
             background-color: #4CAF50;
             color: white;
             border: none;
@@ -83,7 +166,7 @@
             width: 100px;
             height: 50px;
             text-align: center;
-            margin-left: 60%;
+            margin: 0 50% 0 50%;
         }
 
 
@@ -100,23 +183,30 @@
 
         }
 
-        .new-cell, .result-cell{
+        .new-cell, .result-cell-in, .result-cell-out{
             text-align: left;
             border-left: 2px solid #ddd;
             border-right: 2px solid #ddd;
             font-size: 14px;
         }
 
-        .result-cell {
+        .result-cell-in, .result-cell-out {
             font-weight: bold;
-            color: red;
             font-size: 17px;
+        }
+
+        .result-cell-in{
+            color: green;
+        }
+
+        .result-cell-out{
+            color: red;
         }
 
         #resultsTable th {
             padding: 10px 15px; /* Отступы в заголовках */
             background-color: #4CAF50; /* Зелёный цвет фона */
-            color: white; /* Белый текст */
+            color: var(--main-text-color); /* Белый текст */
         }
 
 
@@ -141,108 +231,134 @@
 
         /* Стиль для строк при наведении курсора */
         #resultsTable tr:hover {
-            background-color: #f5f5f5; /* Светло-серый фон */
+            background-color: var(--hover-color); /* Светло-серый фон */
         }
 
-        #resultsTable tr:hover::after {
-            font-weight: bold;
-        }
 
         /* Чередующиеся цвета строк */
         #resultsTable tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: var(--unusual-table-row-color);
         }
 
         .draw {
             display: block;
-            margin: auto;
+            margin: 2% auto;
         }
     </style>
 </head>
 <body>
 
+<table class="main-table">
 
-<table class="head-table">
+    <thead class="head-table">
     <tr>
-        <td class="header-text">Наземцев Сергей Дмитриевич P3211 2116</td>
+        <th class="header-text">
+            Nazemtsev Sergei Dmitryevitch P3211 2116
+        </th>
+
+        <td style="max-width: 100px">
+            <img src="assets/free-icon-sun-1857296.png" style="width: 35px; height: 35px">
+            <label class="switch">
+                <input type="checkbox" id="themeSwitch">
+                <span class="slider"></span>
+            </label>
+            <img src="assets/free-icon-moon-and-stars-8503097.png" style="width: 35px; height: 35px">
+        </td>
     </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <canvas id="canvas" class="draw">Unsupported</canvas>
+        </td>
+    </tr>
+
+
+    <tr>
+        <td>
+            <form id="myForm">
+                <table class="form-container">
+                    <tr>
+                        <td>
+                            <label for="xValue">Coordinate X ([-3; 5])</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" name="xValue" id="xValue" class="coords-input">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="yValue">Coordinate Y ([-5; 5])</label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input type="text" name="yValue" id="yValue" class="coords-input">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <fieldset style="width: 185%; max-width: 200px">
+                                <legend>Range R</legend>
+
+                                <input type="checkbox" id="rValue1" name="rValue" value="1">
+                                <label for="rValue1">1</label> <br>
+
+                                <input type="checkbox" id="rValue2" name="rValue" value="2">
+                                <label for="rValue2">2</label> <br>
+
+                                <input type="checkbox" id="rValue3" name="rValue" value="3">
+                                <label for="rValue3">3</label> <br>
+
+                                <input type="checkbox" id="rValue4" name="rValue" value="4">
+                                <label for="rValue4">4</label> <br>
+
+                                <input type="checkbox" id="rValue5" name="rValue" value="5">
+                                <label for="rValue5">5</label> <br>
+                            </fieldset>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input type="submit" value="Send" class="submit-btn"><br>
+                        </td>
+                    </tr>
+
+                </table>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table id="resultsTable">
+                <tr>
+                    <th>X</th>
+                    <th>Y</th>
+                    <th>R</th>
+                    <th>Result</th>
+                    <th>Current time</th>
+                    <th>Execution time</th>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    </tbody>
+
+
 </table>
 
-<canvas id="canvas" class="draw">Unsupported</canvas>
-
-
-<form id="myForm">
-    <table class="form-container">
-        <tr>
-            <td>
-                <label for="xValue">Coordinate X (X &isin; [-3; 5])</label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="text" name="xValue" id="xValue" class="coords-input">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="yValue">Coordinate Y (Y &isin; [-5; 5])</label>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="text" name="yValue" id="yValue" class="coords-input">
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <fieldset style="width: 220%; max-width: 200px">
-                    <legend>Range R</legend>
-
-                    <input type="checkbox" id="rValue1" name="rValue" value="1">
-                    <label for="rValue1">1</label> <br>
-
-                    <input type="checkbox" id="rValue2" name="rValue" value="2">
-                    <label for="rValue2">2</label> <br>
-
-                    <input type="checkbox" id="rValue3" name="rValue" value="3">
-                    <label for="rValue3">3</label> <br>
-
-                    <input type="checkbox" id="rValue4" name="rValue" value="4">
-                    <label for="rValue4">4</label> <br>
-
-                    <input type="checkbox" id="rValue5" name="rValue" value="5">
-                    <label for="rValue5">5</label> <br>
-                </fieldset>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <input type="submit" value="Send" class="submit-btn"><br>
-            </td>
-        </tr>
-
-    </table>
-</form>
-
-
-<table id="resultsTable">
-    <tr>
-        <th>X</th>
-        <th>Y</th>
-        <th>R</th>
-        <th>Result</th>
-        <th>Current time</th>
-        <th>Execution time</th>
-    </tr>
-</table>
 
 <script type="module" src="utils/render.js"></script>
 <script type="text/javascript" src="utils/addToTable.js"></script>
 <script type="text/javascript" src="utils/drawing.js"></script>
 <script type="text/javascript" src="utils/saveData.js"></script>
+<script type="text/javascript" src="utils/switchThemes.js"></script>
 </body>
 </html>
 
