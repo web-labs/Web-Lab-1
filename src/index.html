@@ -48,7 +48,7 @@
             position: relative;
             display: inline-block;
             width: 60px;
-            height: 35px;
+            height: 30px;
         }
 
         .switch input {
@@ -71,7 +71,7 @@
         .slider:before {
             position: absolute;
             content: "";
-            height: 25px;
+            height: 23px;
             width: 25px;
             left: 4px;
             bottom: 4px;
@@ -177,7 +177,8 @@
             width: 85%;
             border-collapse: collapse;
             font-family: Arial, sans-serif;
-            margin: 3% auto auto 15%;
+            margin: 3% auto auto 13%;
+            /*margin: 2% auto;*/
 
         }
 
@@ -243,6 +244,47 @@
             margin: 2% auto;
         }
 
+        .danger-zone {
+            color: red;
+            border-color: red;
+            width: 112%;
+            max-width: 200px;
+            font-size: 18px;
+        }
+
+        .danger-zone legend {
+            text-align: center;
+        }
+
+        .clear-button {
+            display: block;
+            margin: auto;
+            cursor: pointer;
+            width: 100px;
+            height: 50px;
+            font-size: 15px;
+            color: whitesmoke;
+            background-color: darkred;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+
+        @media (max-width: 1511px) {
+            .theme-switcher-row{
+                max-width: 95px;
+            }
+        }
+
+        @media (min-width: 1512px) {
+            .theme-switcher-row {
+                max-width: 56px;
+            }
+
+        }
+
+
     </style>
 </head>
 <body>
@@ -256,13 +298,13 @@
         </th>
 
 
-        <td style="max-width: 100px">
-            <img src="assets/free-icon-sun-1857296.png" style="width: 35px; height: 35px">
+        <td class="theme-switcher-row">
+            <img src="assets/free-icon-sun-1857296.png" style="width: 30px; height: 30px">
             <label class="switch">
                 <input type="checkbox" id="themeSwitch">
                 <span class="slider"></span>
             </label>
-            <img src="assets/free-icon-moon-and-stars-8503097.png" style="width: 35px; height: 35px">
+            <img src="assets/free-icon-moon-and-stars-8503097.png" style="width: 30px; height: 30px">
         </td>
     </tr>
     </thead>
@@ -329,6 +371,15 @@
                         </td>
                     </tr>
 
+                    <tr>
+                        <td>
+                            <fieldset class="danger-zone">
+                                <legend>Danger Zone</legend>
+                                <input type="button" value="Clear Table" class="clear-button">
+                            </fieldset>
+                        </td>
+                    </tr>
+
                 </table>
             </form>
         </td>
@@ -359,6 +410,7 @@
 <script type="text/javascript" src="utils/drawing.js"></script>
 <script type="text/javascript" src="utils/saveData.js"></script>
 <script type="text/javascript" src="utils/switchThemes.js"></script>
+<script type="text/javascript" src="utils/clearStorage.js"></script>
 </body>
 </html>
 

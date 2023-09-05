@@ -21,12 +21,20 @@ const mainForm = document.querySelector('#myForm');
             fetch(`count_values.php?xVal=${xVal}&yVal=${yVal}&rVal=${rVal}`, {
                 method: 'GET',
             })
-                .then(response => response.text())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Server responded with bad getaway status: ${response.status}`);
+                    }
+                    return response.text();
+                })
                 .then(result => {
                     let responseData = JSON.parse(result);
                     addToTable(xVal, yVal, rVal, responseData.result, responseData.curr_time, responseData.exec_time);
                     saveToLocalStorage(xVal, yVal, rVal, responseData.result, responseData.curr_time, responseData.exec_time);
-                });
+                })
+                .catch(error => {
+                    alert(`There was an error processing your request: ${error.message}`)
+                })
         } else {
             alert(validator.getMessage());
         }
