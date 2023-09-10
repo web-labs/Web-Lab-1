@@ -6,8 +6,10 @@ const mainForm = document.querySelector('#myForm');
         const xVal = parseFloat(document.querySelector('#xValue').value);
         const yVal = parseFloat(document.querySelector('#yValue').value);
 
-        const checkboxes = document.querySelectorAll("input[name='rValue']:checked");
-        const rVal = Array.from(checkboxes).map(checkbox => checkbox.value);
+
+
+        const chosenCheckboxes = document.querySelectorAll("input[name='rValue']:checked");
+        const rVal = Array.from(chosenCheckboxes).map(checkbox => checkbox.value);
 
         const validator = new Validator();
         validator.validate(xVal, yVal, rVal);

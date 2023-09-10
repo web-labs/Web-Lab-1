@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Web Lab1</title>
+    <link rel="icon" href="assets/free-icon-coding-7442382%20(1).png">
     <style>
 
         :root{
@@ -270,16 +271,20 @@
             font-weight: bold;
         }
 
-
-        @media (max-width: 1511px) {
+       @media (max-width: 1062px) {
+           .theme-switcher-row {
+               max-width: 110px;
+           }
+       }
+        @media (min-width: 1063px) and (max-width: 1473px){
             .theme-switcher-row{
                 max-width: 95px;
             }
         }
 
-        @media (min-width: 1512px) {
+        @media (min-width: 1474px) {
             .theme-switcher-row {
-                max-width: 56px;
+                max-width: 65px;
             }
 
         }
@@ -422,7 +427,16 @@
             addToTable(data.x, data.y, data.r, data.result, data.curr_time, data.exec_time);
         })
     }
+
+    const checkboxes = document.querySelectorAll("input[name='rValue']");
+    checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", function (){
+            checkboxes.forEach((box) => {
+                if (box !== this){
+                    box.checked = false;
+                }
+            })
+        })
+    })
+
 </script>
-
-
-
