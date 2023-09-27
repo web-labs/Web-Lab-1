@@ -10,33 +10,24 @@ function drawPoint(xVal, yVal){
     ctx.fill();
 }
 
+function drawDot(ctx, x, y, radius, startAngle, endAngle){
+    ctx.beginPath();
+    ctx.arc(x, y, radius, startAngle, endAngle);
+    ctx.fill();
+}
+
 function putDots(ctx){
     ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--axes-color').trim();
     const radius = 4;
-    ctx.beginPath();
-    ctx.arc(262.5, 175, radius, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(345, 175, radius, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(175, 5, radius, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(175, 87.5, radius, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(87.5, 175, radius, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(5, 175, radius, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(175, 262.5, radius, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(175, 345, radius, 0, Math.PI * 2);
-    ctx.fill();
+    drawDot(ctx, 262.5, 175, radius, 0, Math.PI * 2);
+    drawDot(ctx, 345, 175, radius, 0, Math.PI * 2);
+    drawDot(ctx, 175, 5, radius, 0, Math.PI * 2);
+    drawDot(ctx, 175, 87.5, radius, 0, Math.PI * 2);
+    drawDot(ctx, 87.5, 175, radius, 0, Math.PI * 2);
+    drawDot(ctx, 5, 175, radius, 0, Math.PI * 2);
+    drawDot(ctx, 175, 262.5, radius, 0, Math.PI * 2);
+    drawDot(ctx, 175, 345, radius, 0, Math.PI * 2);
+
 }
 function drawCoordsPlane(r){
     let canvas = document.querySelector('#canvas');
